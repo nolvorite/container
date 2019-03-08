@@ -1,6 +1,6 @@
 # container
 
-Essentially TheContainer, but i'm trying to put it under CodeIgniter. There's a lot of functionality soooo yeah
+Essentially TheContainer, but i'm trying to put it under CodeIgniter. There's a lot of functionality to implement.
 
 ##CodeIgniter plugins that I used. I'll figure out how to give credits later, lest I get into copyright trouble
 
