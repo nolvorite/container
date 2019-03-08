@@ -1,0 +1,32 @@
+{
+	"description": "The CodeIgniter framework",
+	"name": "codeigniter/framework",
+	"type": "project",
+	"homepage": "http://codeigniter.com",
+	"license": "MIT",
+	"support": {
+		"forum": "http://forum.codeigniter.com/",
+		"wiki": "https://github.com/bcit-ci/CodeIgniter/wiki",
+		"irc": "irc://irc.freenode.net/codeigniter",
+		"source": "https://github.com/bcit-ci/CodeIgniter"
+	},
+	"require": {
+		"php": ">=5.3.7",
+		"yidas/codeigniter-model": "^2.16"
+	},
+	"require-dev": {
+		"mikey179/vfsStream": "1.1.*"
+	},
+	"repositories": [
+		{
+		    "packagist": false
+		},
+		{
+		    "type": "composer",
+		    "url": "https://packagist.org/"
+		}
+	],
+	"autoload": {
+          "classmap": ["application/core"]
+     }
+}
