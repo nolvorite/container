@@ -4,13 +4,28 @@ class User_model extends CI_Model {
 
     public $status; 
     public $roles;
+    public $loginId = 0;
     
-    function __construct(){
+    function __construct($userId = null){
         // Call the Model constructor
         parent::__construct();        
         $this->status = $this->config->item('status');
         $this->roles = $this->config->item('roles');
+        if(isset($userId)){
+            $this->loginId = intval($userId);
+        }
     }    
+
+    public function loggedDetails($limit = null){
+        $details = [];
+        
+        $getUser = $this->db->get_where('users', array('id' => $this->loginId));  
+        if($this->db->affected_rows() > 0){
+            $details = $getUser->row_array();
+        }
+
+        return $details;
+    }
 
     public function logLogin($userInfo){
         $loginData = [];
@@ -91,8 +106,15 @@ class User_model extends CI_Model {
         
     }    
     
-    public function getUserInfo($id)
-    {
+    public function getUserInfo($id, $limit = null)
+    {   
+        if(isset($limit)){
+            switch($limit){
+                case "dynamic":
+                    $this->db->select('id,defaultView');
+                break;
+            }
+        }
         $q = $this->db->get_where('users', array('id' => $id), 1);  
         if($this->db->affected_rows() > 0){
             $row = $q->row();

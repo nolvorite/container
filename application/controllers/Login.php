@@ -112,15 +112,15 @@ class Login extends CI_Controller {
 
             if(!$userInfo){
                 $this->session->set_flashdata('flash_message', 'The login was unsucessful');
-                //redirect(site_url().'/login');
+                redirect(site_url().'login');
             }                
             $this->user_model->logLogin($userInfo);
         }
     }
 
     public function logout(){
-    	$this->session->unset_userdata("loginData");
-        redirect(site_url().'/login/');
+    	$this->session->unset_userdata("login");
+        redirect(site_url().'login/');
     }
 
     public function forgot(){
@@ -137,12 +137,12 @@ class Login extends CI_Controller {
 
             if(!$userInfo){
             $this->session->set_flashdata('flash_message', 'We cant find your email address');
-            redirect(site_url().'/login');
+            redirect(site_url().'login');
             }   
 
             if($userInfo->status != $this->status[1]){ //if status is not approved
             $this->session->set_flashdata('flash_message', 'Your account is not in approved status');
-            redirect(site_url().'/login');
+            redirect(site_url().'login');
             }
 
             //build token 

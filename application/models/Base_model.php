@@ -16,7 +16,7 @@ class Base_model extends CI_Model {
         $viewVar .= $this->load->view($view,$data, TRUE);
     }
 
-    public function pageRender($pageProperty, $bundle, $content = null,$dataForOne = []){
+    public function pageRender($pageProperty, $bundle, $content = null,$dataForOne = [],$headerData = []){
         $data1 = [];
         $data2 = [];
         $data3 = [];
@@ -45,6 +45,12 @@ class Base_model extends CI_Model {
             }
         }
 
+        if(!empty($headerData)){
+            foreach($headerData as $key => $headerDataa){
+                $data1[$key] = $headerDataa;
+            }
+        }
+
         if(isset($content)){
             switch(gettype($content)){
                 case "string":
@@ -58,6 +64,9 @@ class Base_model extends CI_Model {
                                 $this->addToRender($data2['content'],$contentt);
                             break;
                             case "array":
+                                //$this->userData->defaultView;
+                                //['userDefaultView'];
+
                                 $this->addToRender($data2['content'],$contentt[0],$contentt[1]);
                             break;
 

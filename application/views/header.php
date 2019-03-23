@@ -9,52 +9,39 @@
         <title><?php if(isset($title)): echo htmlspecialchars($title); endif; ?></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="icon" href="<?php echo site_url(); ?>public/img/icon.png">
         <?php if(isset($cssFiles)): foreach($cssFiles as $link): ?>
         <link rel="stylesheet" href="<?php echo htmlspecialchars(preg_match("#^(http(s)?\:)?\/\/#",$link) ? $link : site_url() . $link); ?>" type="text/css">
         <?php endforeach; endif; ?>
+        <script type="text/javascript">
+          var siteDir = "<?php echo site_url(); ?>";
+        </script>
         <?php if(isset($jsFiles)): foreach($jsFiles as $link): ?>
-        <script type="text/javascript" src="<?php echo htmlspecialchars(preg_match("#^(http(s)?\:)?\/\/#",$link) ? $link : site_url() . $link); ?>" type="text/css"></script>
-        <?php endforeach; endif; ?>
-            
+        <script type="text/javascript" src="<?php echo htmlspecialchars(preg_match("#^(http(s)?\:)?\/\/#",$link) ? $link : site_url() . $link); ?>" type="text/javascript"></script>
+        <?php endforeach; endif; ?>  
     </head>
     <body>
     <!--[if lt IE 8]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-        <nav class="navbar navbar-expand-lg ">
-  <a class="navbar-brand" href="#"><?php echo htmlspecialchars($title); ?></a>
+        <nav class="navbar navbar-expand-lg" id="main_header">
+  <a class="navbar-brand" href="<?php echo site_url(); ?>"><img src="<?php echo site_url(); ?>public/img/logo.png" alt="TheContainer"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+    <span class="navbar-toggler-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30" focusable="false"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"></path></svg></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse" id="top_menu">
     <ul class="navbar-nav mr-auto">
-      <!--<li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      <?php if(isset($_SESSION['login'])): ?>
+      <li class="nav-item">
+          <div class="nav-link nav-link-viewdeclare a-yellow">User View</div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+          <a href="<?php echo site_url(); ?>login/logout" class="nav-link btn-submit"><i class="fas fa-sign-out-alt"></i> Log Out</a>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>-->
+    <?php endif; ?>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
   </div>
 </nav>
 

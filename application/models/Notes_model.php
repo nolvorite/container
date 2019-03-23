@@ -7,8 +7,8 @@ class Notes_model extends MY_DB_Base
     	$notes = $this->find()
     		->select("*")
     		->where("note_by",$userId)
-    		->limit($noteSpan[0],$noteSpan[1])
-    		->order_by("id","DESC")
+    		->limit($noteSpan[0],$noteSpan[1]) 
+    		->order_by("note_id","DESC")
     		->get()
     		->result_array()
     	;
