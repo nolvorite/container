@@ -21,7 +21,8 @@
 
     $config["dynamicControllerUrls"] = [
         'notes' => ['#/panel/notes/',"Notes/Checklist"],
-        'admin' => ['#/panel/admin/',"Admin Panel"]
+        'admin' => ['#/panel/admin/',"Admin Panel"],
+        'forms' => ['#/panel/forms',"Forms"]
     ];
 
     $config["fileList"] = [

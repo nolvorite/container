@@ -7,11 +7,13 @@
 			case "admin":
 			case "notes":
 			case "userDataForController":
+			case "forms":
 				header('Content-Type: application/json');
 				switch($data[0]){
 					case "notes":
 					case "userDataForController":
 					case "admin":
+					case "forms":
 						echo json_encode((array) $data);
 					break;
 				}

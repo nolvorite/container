@@ -32,9 +32,7 @@ function updateData(init = false){
 					break;
 				}
 				if(parseUrl.length >= 2){
-
 					switch(parseUrl[0]){
-
 						case "panel":
 							switch(parseUrl[1]){
 								case "notes":

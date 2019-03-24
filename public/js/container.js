@@ -1,4 +1,4 @@
-//auto-delegated event handlers go here
+//auto-delegated event hand`lers go here
 $(document).ready(function(){
 	$("body").on("click",".toggleDrag",function(e){
 		if(typeof $(this).attr("control") === "string"){
@@ -11,7 +11,6 @@ $(document).ready(function(){
 					$(control).find("[draggable]").each(function(){$(this).removeAttr("draggable")}).attr("nodrag",true);
 				}else{
 					$(this).text($(this).attr("disable")).addClass("badge-warning").removeClass("badge-success");
-					
 					$(control).find("[nodrag]").each(function(){$(this).attr("draggable","true").removeAttr("nodrag")});
 				}
 				

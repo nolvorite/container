@@ -14,7 +14,11 @@ class Dynamic extends CI_Controller {
     		$data = [];
             //index 0: name, index 1 contentData, index 2 viewData
 	    	switch($content){
-                
+                case "forms":
+                    $this->load->model('Databases_model','databases_model', TRUE);
+                    
+                    $data = [$content,[]];
+                break;
                 case "admin":
                     $this->load->model('Content_model', 'content_model', TRUE);
                     $contentData = [];
@@ -55,6 +59,7 @@ class Dynamic extends CI_Controller {
                     case "template":
     				case "notes": 
                     case "admin": 
+                    case "forms":
                         $info = ['type' => $this->input->post()['disp'], 'data' => $postData];
                         if($_POST['disp'] === "template"){
                             $info['view'] = $this->input->post()['view'];

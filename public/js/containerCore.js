@@ -8,7 +8,8 @@ function fetchData(method, url, data, dataType = 'json', whatToDo = ""){
                 headers: {
                     'Access-Control-Allow-Headers': 'Content-Type, Accept, X-Requested-With, Session',
                     'Access-Control-Allow-Methods': 'GET, POST, DELETE, PUT, OPTIONS, HEAD',
-                    'Content-Type':'application/json'
+                    'Content-Type':'application/json',
+                    'cache-control': 'no-cache' 
                 },
                 data: data,
                 async: false,

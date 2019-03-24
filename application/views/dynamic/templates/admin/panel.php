@@ -11,7 +11,7 @@
 		<h3><i class="fas fa-cogs"></i> Admin Panel</h3>
 		<ul class="nav nav-pills" id="admin_tab" role="tablist">
 			<li class="nav-item">
-			<a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">Configuration</a>
+			<a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">Features</a>
 			</li>
 			<li class="nav-item">
 			<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Settings</a>
