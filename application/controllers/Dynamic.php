@@ -9,15 +9,63 @@ class Dynamic extends CI_Controller {
         $this->lang->load('all_lang.php', 'english');
     }
 
+    public function loaderStatic($content){
+        $info = [];
+        if(isset($_POST['disp']) && isset($_POST['data'])){
+            $postData = isset($this->input->post()["data"]) ? $this->input->post()["data"] : [];
+            switch($content){
+                case "tableDisplay":
+                    $info['view'] = $content;
+                    switch($content){
+                        case "tableDisplay":
+                            if(isset($_SESSION['formsToken'])){
+                                $info['type'] = $_POST['disp'];
+                                $info['data'] = $_POST['data'];
+
+                                unset($_SESSION['formsToken']);
+                                
+                            }
+                        break;
+                    }
+                break;
+            }
+        }
+        $this->load->view("dynamic/loaderStatic.php",(object) $info);
+    }
+
     public function loaderDataNeedsLogin($content){
     	if(isset($content) && isset($_SESSION['login'])){
+            $this->load->helper("security");
     		$data = [];
             //index 0: name, index 1 contentData, index 2 viewData
 	    	switch($content){
                 case "forms":
-                    $this->load->model('Databases_model','databases_model', TRUE);
+                    $this->load->model('Databases_model','databasesModel');   
+                    $this->load->model('Tables_model','tablesModel');   
+
+                    $db = $this->databasesModel->findOne(1);
+
+                    $tables = $db->getTables();
+
+                    $tableData = $tables->get()->result_array();
+
+                    $columns = [];
+
+                    foreach($tableData as $table){
+                        $tableData2 = $this->tablesModel->findOne($table['dbfid']);
+                        $columnData = $tableData2->getColumns()->where("type !=","choice");
+                        $columns[] = $columnData->get()->result_array();
+                    }
                     
-                    $data = [$content,[]];
+                    $data = [$content,
+                        [
+                            'tables' => $tableData,
+                            'columns' => $columns,
+                            'data' => []
+                        ]
+                    ];
+                    $_SESSION['formsToken'] = "placement";
+                    //$this->sesssion->set_userdata("formsToken", "placement");
                 break;
                 case "admin":
                     $this->load->model('Content_model', 'content_model', TRUE);
@@ -38,8 +86,17 @@ class Dynamic extends CI_Controller {
                     $data = [$content,$userInfo];
                     $data[1]->redirUrl = $this->config->item('dynamicControllerUrls')[$userInfo->defaultView][0];
                 break;
+                case "tableData":
+                    if($this->input->post("data") !== null){
+                        $getData = $this->security->xss_clean($this->input->post("data"));
+                        $content2 = $getData;
+                        
+                        $data = [$content,$content2];
+                    }
+
+                break;
 	    	}
-            if($content !== "userDataForController"){
+            if(!preg_match("#^userDataForController|tableData$#",$content)){
                 $data[2] = $this->config->item("dynamicControllerUrls")[$content];
             }
 	    	$this->load->view("dynamic/loaderData.php",(object) ['data' => $data]);

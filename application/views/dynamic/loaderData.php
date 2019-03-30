@@ -8,12 +8,16 @@
 			case "notes":
 			case "userDataForController":
 			case "forms":
-				header('Content-Type: application/json');
+			case "tableData":
+				//header('Content-Type: application/json');
+
 				switch($data[0]){
 					case "notes":
 					case "userDataForController":
 					case "admin":
 					case "forms":
+					case "tableData":
+
 						echo json_encode((array) $data);
 					break;
 				}

@@ -11,7 +11,7 @@ body {
     color: #59513e;
     background: #fdefcc;
 }
-input, select, option, textarea,.form-control {
+input, select, option, textarea,.form-control,table {
     font: 13px "Tahoma","Arial";
 }
 textarea{    
@@ -301,4 +301,11 @@ h5.modal-title{margin-top:0;}
 #modal1 .modal-body,#modal1 .form-group{padding:.5rem;}
 .form-group label{font-size:11px;font-weight:bold;}
 .form-group.even{background:#f0f0f0;}
+.table_display.even{background:#f6f6f6;}
 .nopad{padding:0;}
+h4{font-size:16px;font-weight:bold;padding:8px 0;margin:0;}
+.table_pad{margin:0 20px;}
+th{font-weight:bold;font-size:11px;}
+table.table{margin-bottom:0;}
+.table th, .table td{padding:5px 8px;}
+.table_display{padding:0 10px 10px 10px;border-bottom:1px dashed #c0c0c0;}

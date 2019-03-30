@@ -68,6 +68,7 @@ function updateView(init = false){
 		case "admin":
 			fetchData('post','dynamic/loaderStaticNeedsLogin/'+siteSettings.currentView,{disp: siteSettings.currentView, data: siteSettings.contentData},'html',function(html){
 				$("#right_side").html(html);
+
 				switch(siteSettings.currentView){
 					case "admin":
 						sortables("#menus .sortablee",".nav-link","nav-link",function(e, ui){
@@ -82,6 +83,13 @@ function updateView(init = false){
 
 						});
 						tooltips();
+					break;
+					case "forms":
+						fetchData('post','dynamic/loaderDataNeedsLogin/tableData',{data: {tables: siteSettings.contentData.tables, columns: siteSettings.contentData.columns}},'json',function(arrays){
+							fetchData('post','dynamic/loaderStatic/tableDisplay',{data:arrays[1], disp: 'tableDisplay'},'html',function(html){
+								$("#tableLoader").html(html);
+							});
+						});
 					break;
 				}
 			});

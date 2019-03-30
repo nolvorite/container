@@ -5,7 +5,11 @@
 			case "admin":
 			case "template":
 			case "forms":
+			case "tableDisplay":
 				switch($type){
+					case "tableDisplay":
+						echo $this->load->view("dynamic/templates/bits/tableDisplay.php", $data, TRUE);
+					break;
 					case "notes": 
 						echo $this->load->view("dynamic/templates/notes.php",['notes' => $data],TRUE);
 					break;
