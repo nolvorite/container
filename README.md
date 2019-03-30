@@ -17,6 +17,6 @@ I'll figure out how to give credits later, lest I get into copyright trouble
 
 ### Testing
 
- - Place this folder in a local repository
+ - Place this folder in a local environment
  - Import container.sql in the root directory
  - Test around
