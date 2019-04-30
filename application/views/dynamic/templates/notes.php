@@ -8,10 +8,10 @@
         <h3><i class="fas fa-list-alt"></i> Current To-Do List</h3>
         <div class="white_bg" id="notes">
             <?php 
-                if(empty($notes)){
+                if(empty($data)){
                     echo "No notes for now. Feel free to make one!";
                 }else{
-                    foreach($notes as $nc => $noteData):
+                    foreach($data as $nc => $noteData):
                         //$note_dt['note_date'] = $this->base_model->dflt_dfmt($noteData['note_date']);   
             ?>
             <div class='note' note_id='<?php echo $noteData['note_id'] ?>'><div class='note_content'><?php echo $noteData['note'] ?></div>

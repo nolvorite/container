@@ -17,42 +17,64 @@ $(document).ready(function(){
 			}
 		}
 	});
+
 	$("body").on("click keyup",".keyboard",function(e){
 		if(typeof $(this).attr("type") !== "undefined"){
 			width = $(this).outerWidth();
 			val = $(this).val();
+			$(this).next(".dropdown-menu").css("width",width+"px");
+			var $currentE = $(this);
 			switch($(this).attr("ttype")){
+				case "dbsearchinput":
+					searcherDt = {
+						tableN : $(this).attr("table"),
+						columnN : $(this).attr("columns") !== undefined ? $(this).attr("columns") : "*",
+						returns : $(this).attr("returns") !== undefined ? $(this).attr("returns") : "assoc"
+					};
+					switch(e.type){
+						case "keyup":
+							//table="db_columns" columns="/all" returns="/array"
+							if(searcherDt.tableN !== undefined && $(this).attr("dl_index") !== undefined){
+								searcher = searchers[$(this).attr("dl_index")];
+								searcher.updateq($(this).val());
+								searcher.loadData(function(data){							
+									ddId = "#for_"+searcher.elem.attr("id");
+									$(ddId).html(data);
+								});
+								
+								
+							}
+						break;
+					}
+				break;
 				case "iconchange":
-					$(this).next(".dropdown-menu").css("width",width+"px");
-
-					var $currentE = $(this);
-						switch(e.type){
-							case "click":
-								iconload(function(data){
-									randoms = Array.from({length: 100}, () => Math.floor(Math.random() * Object.keys(data).length));
-									$currentE.next(".dropdown-menu").find(".iconlist").html("");
-									for(i = 0; i < randoms.length; i++){
-										$currentE.next(".dropdown-menu").find(".iconlist").prepend("<div class='tab' label='"+data["a"+randoms[i]]+"'><i class='"+data["a"+randoms[i]]+"'></i></div>");
+					switch(e.type){
+						case "click":
+							iconload(function(data){
+								randoms = Array.from({length: 100}, () => Math.floor(Math.random() * Object.keys(data).length));
+								$currentE.next(".dropdown-menu").find(".iconlist").html("");
+								for(i = 0; i < randoms.length; i++){
+									$currentE.next(".dropdown-menu").find(".iconlist").prepend("<div class='tab' label='"+data["a"+randoms[i]]+"'><i class='"+data["a"+randoms[i]]+"'></i></div>");
+								}
+							});
+						break;
+						case "keyup":
+							var vall = $(this).val();
+							iconload(function(data){
+								$currentE.next(".dropdown-menu").find(".iconlist").html("");
+								limit = 0;
+								for(i = 0; i < Object.keys(data).length; i++){
+									label = data["a"+i].replace(/-/g,"");
+									classN = data["a"+i];
+									if((label.indexOf(vall) > 0 || classN.indexOf(vall) > 0 || /^[ \t]+$/.test(vall)) && limit <= 100){
+										$currentE.next(".dropdown-menu").find(".iconlist").prepend("<div class='tab' label='"+data["a"+i]+"'><i class='"+data["a"+i]+"'></i></div>");
+										limit++;
 									}
-								});
-							break;
-							case "keyup":
-								var vall = $(this).val();
-								iconload(function(data){
-									$currentE.next(".dropdown-menu").find(".iconlist").html("");
-									limit = 0;
-									for(i = 0; i < Object.keys(data).length; i++){
-										label = data["a"+i].replace(/-/g,"");
-										classN = data["a"+i];
-										if((label.indexOf(vall) > 0 || classN.indexOf(vall) > 0 || /^[ \t]+$/.test(vall)) && limit <= 100){
-											$currentE.next(".dropdown-menu").find(".iconlist").prepend("<div class='tab' label='"+data["a"+i]+"'><i class='"+data["a"+i]+"'></i></div>");
-											limit++;
-										}
-									}
-								});
-								$(this).next(".dropdown-menu").find(".iconnn").html("<i class='"+val+" iconnn' />");
-							break;
-						}
+								}
+							});
+							$(this).next(".dropdown-menu").find(".iconnn").html("<i class='"+val+" iconnn' />");
+						break;
+					}
 				break;
 			}
 		}

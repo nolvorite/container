@@ -9,15 +9,21 @@
 			case "userDataForController":
 			case "forms":
 			case "tableData":
-				//header('Content-Type: application/json');
-
+			case "dataFetch":
+			case "users":
+			case "settings":
+				header('Content-Type: application/json');
 				switch($data[0]){
 					case "notes":
 					case "userDataForController":
 					case "admin":
 					case "forms":
 					case "tableData":
-
+					case "dataFetch":
+					case "users":
+						echo json_encode((array) $data);
+					break;
+					case "settings":
 						echo json_encode((array) $data);
 					break;
 				}

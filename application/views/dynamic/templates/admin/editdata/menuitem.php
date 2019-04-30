@@ -41,7 +41,7 @@ array(7) {
 		<div class="desc">
 			Selected Icon: <span class="iconnn"><i class="<?php echo $data['properties']['iconClass']; ?>"></i></span>
 		</div><div class="displayer"></div>
-		<div class="iconlist"><div class="displayer">Loading...</div></div>
+		<div class="iconlist"><div class="displayer">Loading... <span class="loading-sm"></span></div></div>
 	</div>
 </div>
 <div class="form-group even">
