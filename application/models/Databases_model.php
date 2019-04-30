@@ -15,8 +15,5 @@ class Databases_model extends MY_DB_Base
     public function getTables(){
     	return $this->hasMany('Tables_model', 'dbid_ref' , 'dbid');
     }
-    public function getUsers(){
-    	return $this->hasMany('Users_model', 'db_affinity' , 'dbid')->select("email,id,role");
-    }
 }
 ?>

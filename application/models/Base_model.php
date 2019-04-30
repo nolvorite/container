@@ -1,8 +1,5 @@
 <?php
 class Base_model extends CI_Model {
-
-    //this should be in a lib
-
     public $pageProperties;
     public $defaultTitle;
     public $fileBundles;
@@ -17,22 +14,6 @@ class Base_model extends CI_Model {
     
     public function addToRender(&$viewVar,$view,$data = []){
         $viewVar .= $this->load->view($view,$data, TRUE);
-    }
-
-    public function convertToNull($array){
-        $originalType = gettype($array);
-        $array2 = $array;
-        $new = ($originalType === "object") ? (array) $array : $array;
-        foreach($array as $key => $val){
-            if(gettype($val) === "array"){
-                if(count($val) === 0){
-                    $array2[$key] = null;
-                }else{
-                    $array2[$key] = $this->convertToNull($val);
-                }
-            }
-        }
-        return $array2;
     }
 
     public function pageRender($pageProperty, $bundle, $content = null,$dataForOne = [],$headerData = []){

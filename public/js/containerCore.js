@@ -1,3 +1,4 @@
+
 function fetchData(method, url, data, dataType = 'json', whatToDo = ""){
     switch(method){
         case "asObject":
@@ -31,45 +32,9 @@ function fetchData(method, url, data, dataType = 'json', whatToDo = ""){
                         console.log(returned);
                     }
                 }).fail(function(jqXHR, textStatus){
-                    if(jqXHR.responseText !== ""){
-                        textParsed = $(jqXHR.responseText).text();
-                        $("#modal1Title").html("PHP error:");
-                        $("#modalBody").html(textParsed);
-                        $("#modal1").modal('toggle');
-                    }
                 });
             });
         break;
-    }
-}
-
-class dataLoader {
-    constructor(table,columns,returns,elem){
-        this.table = table;
-        this.columns = columns;
-        this.returns = returns;
-        this.updateQ = "";
-        this.data = [];
-        this.elem = elem;
-    }
-    updateq(val){
-        this.updateQ = val;
-    }
-    loadData(whatToDo = function(){}){
-        var embed = this;
-        fetchData(
-            'get',
-            'dynamic/loaderDataForBits/',
-            {table: this.table, columns: this.columns, query: this.updateQ, returns: this.returns},
-            "html",
-            whatToDo
-        );
-    }
-    setData(d){
-        this.data = d;
-    }
-    getData(){        
-        return this.data;
     }
 }
 

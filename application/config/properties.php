@@ -22,10 +22,7 @@
     $config["dynamicControllerUrls"] = [
         'notes' => ['#/panel/notes/',"Notes/Checklist"],
         'admin' => ['#/panel/admin/',"Admin Panel"],
-        'forms' => ['#/panel/forms',"Forms/Database Tables"],
-        'users' => ['#/panel/users',"Manage Users"],
-        'settings/personal' => ['#/panel/settings/personal',"Personal Settings"],
-        'settings/general' => ['#/panel/settings/general',"General Settings"]
+        'forms' => ['#/panel/forms',"Forms"]
     ];
 
     $config["fileList"] = [
@@ -42,19 +39,17 @@
             'css' => [
                 //"https://use.fontawesome.com/releases/v5.7.2/css/all.css",
                 "assets/css/bootstrap.min.css",
-                "assets/css/jquery.datetimepicker.css",
                 "public/css/main.css"
             ],
             'js' => [
                 "assets/js/jquery-3.3.1.min.js",
-                "assets/js/jquery.datetimepicker.min.js",
                 "assets/js/popper.min.js",
                 "assets/js/bootstrap.min.js",
                 "public/js/containerCore.js",
-                "public/js/containerMethods.js",
                 "public/js/containerController.js",
                 "https://use.fontawesome.com/releases/v5.7.2/js/all.js",
-                "assets/js/jquery.sortable.min.js",
+                "public/js/jquery.sortable.min.js",
+                "public/js/containerMethods.js",
                 "public/js/container.js"
             ]
         ]

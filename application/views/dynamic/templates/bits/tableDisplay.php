@@ -40,18 +40,14 @@
 <div class="table_display<?php echo (intval($index) % 2 === 1) ? " even" : ""; ?>">
 	<h4><?php echo $table['table_name']; ?></h4>
 	<div class="table_pad">
-		<table class="table table-striped" tableId="<?php echo $table['dbfid']; ?>" index="<?php echo $index; ?>">
+		<table class="table table-striped">
 			<tr>
-            <th class="centr" width='1%'>#</th>
-			<?php 
-                $span = 1;
-                foreach($columns[$index] as $index2 => $column): $span++; ?>
+			<?php foreach($columns[$index] as $index2 => $column):  ?>
 				<th dbcid="<?php echo $column['dbcid']; ?>" type="<?php echo $column['type']; ?>">
 					<?php echo $column['dbc_name']; ?>
 				</th>
 			<?php endforeach; ?>
 			</tr>
-            <tr class="loadings"><td class="loadings" colspan="<?php echo $span; ?>" class="alerts alert-light">Loading... <span class="loading-sm"></span></tr>
 		</table>
 	</div>
 </div>
